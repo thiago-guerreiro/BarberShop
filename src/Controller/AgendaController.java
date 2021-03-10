@@ -56,4 +56,14 @@ public class AgendaController {
         Servico servico = helper.obterServico();
         helper.setarValor(servico.getValor());
     }
+    
+    public void agendar() {
+        // Busca Objeto Agendamento da Tela
+        Agendamento agendamento = helper.obterModelo();
+        // Salva Objeto no banco de dados
+        new AgendamentoDAO().insert(agendamento);
+        // Insere na tabela
+        atualizaTabela();
+        helper.limparTela();
+    }
 }
