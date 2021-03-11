@@ -12,6 +12,7 @@ import Model.DAO.AgendamentoDAO;
 import Model.DAO.ClienteDAO;
 import Model.DAO.ServicoDAO;
 import Model.Servico;
+import Servico.Correio;
 import View.Agenda;
 import java.util.ArrayList;
 
@@ -62,6 +63,9 @@ public class AgendaController {
         Agendamento agendamento = helper.obterModelo();
         // Salva Objeto no banco de dados
         new AgendamentoDAO().insert(agendamento);
+        
+        Correio correio = new Correio();
+        correio.NotificarPorEmail(agendamento);
         // Insere na tabela
         atualizaTabela();
         helper.limparTela();
